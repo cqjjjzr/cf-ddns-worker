@@ -8,7 +8,7 @@
     "build": "webpack"
   },
   "author": "",
-  "license": "GPL-3.0",
+  "license": "GPLv2",
   "dependencies": {
     "buffer": "^6.0.3",
     "wildcard-match": "^5.1.2"
