@@ -15,7 +15,7 @@ $CF_IPv6_Enabled = $true
 $CF_IPv4_Update_Block = { return (Invoke-RestMethod -Uri 'https://ip4.seeip.org/json').ip }
 #$CF_IPv6_Update_Block = { return (Invoke-RestMethod -Uri 'https://ip6.seeip.org/json').ip }
 
-$CF_IPv4_Update_Block = $null
+#$CF_IPv4_Update_Block = $null
 $CF_IPv6_Update_Block = $null
 
 # If the update URL is not specified, the script will try to obtain one from your NIC.

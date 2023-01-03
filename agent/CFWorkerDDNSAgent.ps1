@@ -36,7 +36,7 @@ function CF_Extract_IPv6_IP($addresses) {
     if ($addresses.Count -eq 0) {
         throw "No public IPv6 address found."
     }
-    $
+    
     return $addresses[0]
 }
 
@@ -85,7 +85,6 @@ function CF_Update($ipv6) {
             ($ipv6 ? $CF_IPv6_NIC_Index : $CF_IPv4_NIC_Index) `
             ($ipv6 ? $CF_IPv6_NIC_Auto_Public : $CF_IPv4_NIC_Auto_Public))
         Write-Host "Got IP address" $ip
-        return
         Write-Host "Updating to domain " $CF_Domain
         $request = @{
             id = $CF_Token_ID;
