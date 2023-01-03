@@ -55,7 +55,7 @@ Then publish the worker.
 
 ### Agent
 
-(To be done)
+A PowerShell agent is provided in the 'agent' directory. Edit the `config.ps1` for configuration and run it with a scheduled task. PowerShell 7 or higher is required.
 
 To write your own agent, you need to send the following payload to the worker route:
 
