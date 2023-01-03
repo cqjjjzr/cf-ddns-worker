@@ -91,7 +91,7 @@ function CF_Update($ipv6) {
             domain = $CF_Domain;
             type = $addrFamily.ToLower();
             addr = $ip;
-            timestamp = (Get-Date -UFormat %s);
+            timestamp = (Get-Date(Get-Date).ToUniversalTime() -UFormat %s) - 60;
         }
         $requestText = $request | ConvertTo-Json -Compress
         $sign = (CF_HMAC_Sign $CF_Token $requestText)
