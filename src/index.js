@@ -2,7 +2,7 @@
  * This handled a request to update a given DNS record.
  * The request should have the following format:
  *
- * {"id": "<hmac token id>", "domain": "<subdomain>", "addr": "<addr, null for auto>", "type": "<ipv4 or ipv6>", timestamp: "<unix_timestamp>"}
+ * {"id": "<hmac token id>", "domain": "<full domain>", "addr": "<addr, null for auto>", "type": "<ipv4 or ipv6>", "timestamp": "<unix_timestamp>"}
  *
  * The request must contain the base64-encoded HMAC (of the request body) in the "Authorization" header
  */
@@ -117,6 +117,8 @@ async function updateRecord(addr, requestBody) {
     throw "fetch_record_failure"
   
   const records = (await record_res.json()).result;
+  console.log("Retrieved existing records");
+  console.log(records);
   let upd_res;
   if (!records || records.length <= 0) {
     // create record

@@ -29,19 +29,19 @@ You need to create a JSON file for authentication and authorization with the for
 ]
 ```
 
-The `allowed` parameter supports wildcard (as described in the [wildcard-match](https://www.npmjs.com/package/wildcard-match) package). The root domain should not be included in the parameter. Here's a working example:
+The `allowed` parameter supports wildcard (as described in the [wildcard-match](https://www.npmjs.com/package/wildcard-match) package). The root domain should be included in the parameter. Here's a working example:
 
 ```json
 [
     {
         "id": "charlie",
         "token": "+xM1Uz56ZX7mpVaDJcX49w==",
-        "allowed": "*.charlie.partner"
+        "allowed": "*.charlie.partner.example.com"
     }
 ]
 ```
 
-which will allow updating all subdomains on `charlie.partner.whatever.root.domain`.
+which will allow updating all subdomains on `charlie.partner.example.com`.
 
 Next, you need to minify the JSON and Base64-encode it. Then you need to get the Zone ID for your site (a long hex string available in the "Overview" page in your site, at the right sidebar).
 
@@ -55,4 +55,20 @@ Then publish the worker.
 
 ### Agent
 
-(TBD)
+(To be done)
+
+To write your own agent, you need to send the following payload to the worker route:
+
+```json
+{
+    "id": "<hmac token id>",
+    "domain": "<full domain>",
+    "addr": "<addr, null for auto>",
+    "type": "<ipv4 or ipv6>",
+    "timestamp": "<unix_timestamp>"
+}
+```
+
+The request must be made no longer than 5 minutes after the `timestamp`, and the whole request body must be signed using the HMAC token, with HMAC-SHA-256 algorithm. The signature is Base64-encoded and placed into the `Authorization` HTTP header.
+
+
